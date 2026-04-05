@@ -39,8 +39,8 @@
   模型显示、Logo 区域展示、当前 provider 文案。这里做了 `GPT-5.4` 和 `ChatGPT OAuth (Codex CLI)` 的显示适配。
 - `src/utils/messages.ts` 和 `src/screens/REPL.tsx`
   流式消息处理和终端界面。这里接入了 Codex 重连进度提示。
-- `scripts/install-global-launchers.ps1`
-  Windows 全局启动器安装脚本。这里负责生成 `ccb666`、`claude-code-codex`、`claude-code-v666`。
+- `scripts/install-global-launchers.ts`
+  Windows / macOS 全局启动器安装脚本。这里负责生成 `ccb666`、`claude-code-codex`、`claude-code-v666`。
 - `README.md` / `README_EN.md`
   本分支自己的说明文档。
 
@@ -60,8 +60,8 @@
   关键文件：`src/utils/model/model.ts`、`src/utils/logoV2Utils.ts`
 - 增加重连中的实时等待提示
   关键文件：`src/utils/messages.ts`、`src/screens/REPL.tsx`
-- 增加 Windows 全局启动命令
-  关键文件：`package.json`、`scripts/install-global-launchers.ps1`、`scripts/defines.ts`
+- 增加 Windows / macOS 全局启动命令
+  关键文件：`package.json`、`scripts/install-global-launchers.ts`、`scripts/defines.ts`
 
 ## 运行原理
 
@@ -112,6 +112,8 @@ bun run install:launcher
 ```bash
 ccb666
 ```
+
+在 macOS 上，启动器会优先安装到 Bun 所在目录；如果该目录不可写，则会回退到当前 `PATH` 中第一个可写目录，必要时再回退到 `~/.bun/bin` 或 `~/.local/bin`。如果脚本提示目标目录不在 `PATH` 中，把提示里的 `export PATH=...` 加到你的 shell 配置里即可。
 
 也可以用：
 

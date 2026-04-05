@@ -49,7 +49,7 @@
     "test": "bun test",
     "check:unused": "knip-bun",
     "health": "bun run scripts/health-check.ts",
-    "install:launcher": "powershell -ExecutionPolicy Bypass -File scripts/install-global-launchers.ps1",
+    "install:launcher": "bun run scripts/install-global-launchers.ts",
     "postinstall": "node dist/download-ripgrep.js || bun run scripts/download-ripgrep.ts || true",
     "docs:dev": "npx mintlify dev"
   },
